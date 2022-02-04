@@ -2,6 +2,7 @@ import React from 'react';
 
 const Nav = () => {
 	return (<>
+
 		<nav className="mx-1 my-1 rounded navbar navbar navbar-expand-lg navbar-dark bg-secondary ">
 			<div className="container-fluid">
 				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
