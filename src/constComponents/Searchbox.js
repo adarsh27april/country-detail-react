@@ -1,8 +1,9 @@
 import React from 'react';
-
+// import { useGlobalcontex } from '../ContextAPI';
 const Searchbox = () => {
-   return <>
 
+   return <>
+      Search box
    </>;
 };
 
