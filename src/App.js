@@ -2,10 +2,13 @@
 // import './App.css';
 import React, { useState, useContext } from 'react';
 
+
+// import SearchResult from './dynamicComponents/SearchResult';
+
+
 import Nav from './constComponents/Nav';
 import Searchbox from './constComponents/Searchbox';
 import CountryList from './constComponents/CountryList';
-import SearchResult from './dynamicComponents/SearchResult';
 import Flag from './dynamicComponents/Flag';
 import CountryDetailTable from './dynamicComponents/CountryDetailTable';
 import BingMap from './dynamicComponents/BingMap';
@@ -22,7 +25,9 @@ function App() {
 				<div className="row mb-2">
 					<div className="col-md-6 my-4">
 						<Searchbox />
-						<SearchResult />
+
+						{/* <SearchResult /> */}
+
 					</div>
 					<div className="col-md-6 my-4">
 						<CountryList />
