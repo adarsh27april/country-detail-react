@@ -1,28 +1,50 @@
 import SearchResult from '../dynamicComponents/SearchResult';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useGlobalcontex } from '../ContextAPI';
-import useFetch from '../useFetch';
+
 const Searchbox = () => {
 
-   const { OfficialName, setOfficialName, SearchText, setSearchText,
-      FetchDataNow, setFetchDataNow, FetchedApiData, setFetchedApiData
-   } = useGlobalcontex();
+   const { OfficialName, setOfficialName, SearchText, setSearchText } = useGlobalcontex();
 
    // console.log(setOfficialName, OfficialName);
 
+   var url;
    const handleSubmit = (e) => {
       e.preventDefault();
-      setFetchDataNow(true);
+      // setFetchDataNow_SearchBox(true);
+      url = `https://restcountries.com/v3.1/name/${SearchText}`;
+      getCountryData(url);
    }
-   var url = `https://restcountries.com/v3.1/name/${SearchText}`;
-   const { IsLoading, setIsLoading } = useFetch(url);
+   // const { IsLoading, FetchedApiData, IsServerErr } = useFetch(url);
 
-   // if (IsLoading == false) {
-   //    console.log(FetchedApiData);
-   //    setIsLoading(true);
-   //    /* this is because this if block was running everytime there was some change in the searchbox*/
-   // }
+   const [IsLoading, setIsLoading] = useState(true);
+   const [IsServerErr, setIsServerErr] = useState(false);
+   const [FetchedApiData, setFetchedApiData] = useState([]);
+
+   const getCountryData = useCallback(async (url) => {
+      await fetch(url)
+         .then((response) => {
+            if (response.status >= 200 && response.status <= 299) {
+               setIsLoading(false);
+               return response.json();
+            }
+            else {
+               setIsLoading(false);
+               setIsServerErr(true);
+               throw new Error(response.statusText);
+            }
+         })
+         .then((data) => {
+            setFetchedApiData(data);
+            setIsLoading(false);
+         })
+         .catch((error) => {
+            throw new Error(error.message);
+            // console.log('Error during fetch: ' + error.message);
+         }
+         );
+   }, [url])
 
    return (<>
       <form className="input-group" onSubmit={handleSubmit}>
@@ -37,7 +59,7 @@ const Searchbox = () => {
       </form>
       <br />
 
-      {IsLoading ? 'nothing here' : <SearchResult />}
+      <SearchResult IsLoading={IsLoading} IsServerErr={IsServerErr} FetchedApiData={FetchedApiData} />
       {/* The issue here now is that SearchResult component is being re-rendered
       for every change in search box
        */}
