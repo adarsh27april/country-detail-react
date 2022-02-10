@@ -1,10 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
-import React, { useState, useContext } from 'react';
-
-
-// import SearchResult from './dynamicComponents/SearchResult';
-
+import React from 'react';
 
 import Nav from './constComponents/Nav';
 import Searchbox from './constComponents/Searchbox';
@@ -14,9 +10,6 @@ import CountryDetailTable from './dynamicComponents/CountryDetailTable';
 import BingMap from './dynamicComponents/BingMap';
 import Wttr from './dynamicComponents/Wttr';
 function App() {
-
-	// const [OfficialName, setOfficialName] = useState('');
-	// const OfficialNameContext = useContext('');
 
 	return (
 		<>
