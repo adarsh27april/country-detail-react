@@ -50,7 +50,10 @@ const SearchResult = (props) => {
       FetchedApiData.sort(compare);
 
       return (<>
-         <div className="mt-3 overflow-auto" style={{ "maxWidth": "90%", "maxHeight": "300px" }}>
+         <div className='d-flex align-items-center justify-content-center'>
+            <h1>Search Results</h1>
+         </div>
+         <div className="mt-2 overflow-auto" style={{ "maxWidth": "90%", "maxHeight": "300px" }}>
             <ul className="list-group">
                {
                   FetchedApiData.map((country, index) => {

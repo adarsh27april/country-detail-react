@@ -102,7 +102,10 @@ const CountryList = () => {
 					Show/Hide Country List
 				</button>
 			</div>
-			<div className="mt-5 overflow-auto" style={{ "maxWidth": "90%", "maxHeight": "300px" }}>
+			<div className='mt-3 d-flex align-items-center justify-content-center'>
+				<h1 >List of all countries</h1>
+			</div>
+			<div className="mt-3 overflow-auto" style={{ "maxWidth": "90%", "maxHeight": "300px" }}>
 				<ul className="list-group">
 					{
 						FetchedApiData.map((country, index) => {

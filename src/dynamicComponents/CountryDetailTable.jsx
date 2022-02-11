@@ -30,7 +30,7 @@ const CountryDetailTable = () => {
       {
          (!CountryDetail) ? '' : <>
             Country detail table
-            <div class="table-responsive">
+            <div class="table-responsive mt-3">
                <div class="container ">
 
                   <table class="table table-hover table-responsive">

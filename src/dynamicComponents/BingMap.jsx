@@ -11,8 +11,8 @@ const BingMap = () => {
    return (<>
       {(!CountryDetail) ? '' : <>
          Bing Map
-         <div >
-            <iframe frameBorder="0"
+         <div className='mt-3'>
+            <iframe frameBorder="0" title={`Bing Map of : ${CountryDetail.name.official}`}
                width={width} height={height}
                src={`https://www.bing.com/maps/embed?h=${height}&w=${width}&cp=${CountryDetail.latlng[0]}~${CountryDetail.latlng[1]}&lvl=${level}&typ=s&sty=h&src=SHELL&FORM=MBEDV8`}
                scrolling="no"
@@ -20,7 +20,7 @@ const BingMap = () => {
             >
             </iframe>
             <div style={{ "whiteSpace": "nowrap", "textAlign": "center", "width": `${width / 2 + 150}px` }}>
-               <a id="largeMapLink" target="_blank"
+               <a id="largeMapLink" target="_blank" rel="noopener noreferrer"
                   href={`https://www.bing.com/maps?cp=${CountryDetail.latlng[0]}~${CountryDetail.latlng[1]}&amp;sty=h&amp;lvl=${level}&amp;FORM=MBEDLD`}>
                   View Larger Map
                </a>

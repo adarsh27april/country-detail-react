@@ -1,11 +1,11 @@
 import SearchResult from '../dynamicComponents/SearchResult';
 
-import React, { useState, useCallback } from 'react';
-import { useGlobalcontex } from '../ContextAPI';
+// import React, { useState, useCallback } from 'react';
+import React, { useState, } from 'react';
+// import { useGlobalcontex } from '../ContextAPI';
 
 const Searchbox = () => {
 
-   const { OfficialName, setOfficialName } = useGlobalcontex();
    const [SearchText, setSearchText] = useState('');
    // console.log(setOfficialName, OfficialName);
 
@@ -22,7 +22,8 @@ const Searchbox = () => {
    const [IsServerErr, setIsServerErr] = useState(false);
    const [FetchedApiData, setFetchedApiData] = useState([]);
 
-   const getCountryData = useCallback(async (url) => {
+   // const getCountryData = useCallback(async (url) => {
+   const getCountryData = async (url) => {
       setIsLoading(true);
       await fetch(url)
          .then((response) => {
@@ -44,7 +45,8 @@ const Searchbox = () => {
             throw new Error(error.message);
          }
          );
-   }, [url])
+   }
+   // , [url])
 
    return (<>
       <form className="input-group" onSubmit={handleSubmit}>
