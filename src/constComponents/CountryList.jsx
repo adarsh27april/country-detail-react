@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Spinner } from 'reactstrap';
 
@@ -14,14 +14,14 @@ const CountryList = () => {
 	const [FetchedApiData, setFetchedApiData] = useState([]);
 	const [IsShowCountryList, setIsShowCountryList] = useState(false);
 
-	console.log('CountryList');
+	// console.log('CountryList');
 
 	const getCountryData = async (url) => {
 		setIsLoading(true);
 		// const getCountryData = useCallback(async (url) => {
 		await fetch(url)
 			.then((response) => {
-				console.log('fetching all countries');
+				// console.log('fetching all countries');
 				setIsLoading(false);
 				return response.json();
 			})
@@ -32,7 +32,7 @@ const CountryList = () => {
 			.catch((error) => {
 				setIsLoading(false)
 				setIsServerErr(true)
-				console.log('Error during fetch: ' + error.message);
+				// console.log('Error during fetch: ' + error.message);
 				throw new Error(error.message);
 			}
 			);
@@ -43,11 +43,11 @@ const CountryList = () => {
 		if (IsShowCountryList) {
 			// window.onload = () => {
 			getCountryData(url);
-			console.log('here');
+			// console.log('here');
 			// }
 		}
 		// });
-	}, [IsShowCountryList])
+	}, [IsShowCountryList, url])
 
 	const ShowBtn = () => {
 		setIsShowCountryList(!IsShowCountryList);
@@ -86,7 +86,7 @@ const CountryList = () => {
 			</div>
 		</>)
 	}
-	else if (FetchedApiData.length != 0) {
+	else if (FetchedApiData.length !== 0) {
 		function compare(a, b) {
 			if (a.name.official > b.name.official)
 				return 1;

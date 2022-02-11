@@ -8,7 +8,7 @@ const SearchResult = (props) => {
    const { IsLoading, FetchedApiData, IsServerErr } = props;
    const { setCountryDetail } = useGlobalcontex();
 
-   console.log('SearchResult');
+   // console.log('SearchResult');
 
    if (IsLoading) {
       return (<>
@@ -38,7 +38,7 @@ const SearchResult = (props) => {
          </div>
       </>)
    }
-   else if (FetchedApiData.length != 0) {
+   else if (FetchedApiData.length !== 0) {
 
       function compare(a, b) {
          if (a.name.official < b.name.official)

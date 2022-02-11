@@ -6,7 +6,7 @@ const CountryDetailTable = () => {
    let capitals = "";
    let langsSpoken = "";
 
-   if (CountryDetail != undefined) {
+   if (CountryDetail !== undefined) {
       for (let i = 0; i < CountryDetail.capital.length; i++) {
          const element = CountryDetail.capital[i];
          if (i > 0) {
@@ -16,7 +16,7 @@ const CountryDetailTable = () => {
       }
 
       let langsSpokenArr = Object.values(CountryDetail.languages);
-      console.log(langsSpokenArr);
+      // console.log(langsSpokenArr);
       for (let i = 0; i < langsSpokenArr.length; i++) {
          const element = langsSpokenArr[i];
          if (i > 0) {
