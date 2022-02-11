@@ -2,16 +2,16 @@ import React, { useState, useContext } from 'react';
 
 export const OfficialNameContext = React.createContext();
 export const ContextAPI = (props) => {
-   const [OfficialName, setOfficialName] = useState('default value');
-   const [SearchText, setSearchText] = useState('');
-
-
+   const [CountryDetail, setCountryDetail] = useState();
+   /**
+    * Context API ka agar koi ek bhi state change hota hai to wo un
+    * sabhi states ko refresh karta hai jo isme defined hoti hai.
+    */
 
    return (
       <OfficialNameContext.Provider
          value={{
-            OfficialName, setOfficialName,
-            SearchText, setSearchText,
+            CountryDetail, setCountryDetail
          }}
       >
          {props.children}

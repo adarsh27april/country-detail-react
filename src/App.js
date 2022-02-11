@@ -18,9 +18,6 @@ function App() {
 				<div className="row mb-2">
 					<div className="col-md-6 my-4">
 						<Searchbox />
-
-						{/* <SearchResult /> */}
-
 					</div>
 					<div className="col-md-6 my-4">
 						<CountryList />
@@ -28,7 +25,6 @@ function App() {
 				</div>
 			</main>
 
-			{/* country data */}
 			<main className="container">
 				<div className="row mb-2">
 					<div className="col-md-6 my-4">

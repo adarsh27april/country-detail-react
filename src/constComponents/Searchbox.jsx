@@ -5,8 +5,8 @@ import { useGlobalcontex } from '../ContextAPI';
 
 const Searchbox = () => {
 
-   const { OfficialName, setOfficialName, SearchText, setSearchText } = useGlobalcontex();
-
+   const { OfficialName, setOfficialName } = useGlobalcontex();
+   const [SearchText, setSearchText] = useState('');
    // console.log(setOfficialName, OfficialName);
 
    var url;
@@ -18,11 +18,12 @@ const Searchbox = () => {
    }
    // const { IsLoading, FetchedApiData, IsServerErr } = useFetch(url);
 
-   const [IsLoading, setIsLoading] = useState(true);
+   const [IsLoading, setIsLoading] = useState(false);
    const [IsServerErr, setIsServerErr] = useState(false);
    const [FetchedApiData, setFetchedApiData] = useState([]);
 
    const getCountryData = useCallback(async (url) => {
+      setIsLoading(true);
       await fetch(url)
          .then((response) => {
             if (response.status >= 200 && response.status <= 299) {
@@ -41,7 +42,6 @@ const Searchbox = () => {
          })
          .catch((error) => {
             throw new Error(error.message);
-            // console.log('Error during fetch: ' + error.message);
          }
          );
    }, [url])

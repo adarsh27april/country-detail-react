@@ -1,58 +1,92 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
+import { Spinner } from 'reactstrap';
+
 import { useGlobalcontex } from '../ContextAPI';
+
 const CountryList = () => {
-	const { } = useGlobalcontex();
+	const { setCountryDetail } = useGlobalcontex();
 
 	var url = `https://restcountries.com/v3.1/all`;
-	// document.addEventListener('DOMContentLoaded', () => {
-	// })
 
-	const [IsLoading, setIsLoading] = useState(true);
+	const [IsLoading, setIsLoading] = useState(false);
 	const [IsServerErr, setIsServerErr] = useState(false);
 	const [FetchedApiData, setFetchedApiData] = useState([]);
+	const [IsShowCountryList, setIsShowCountryList] = useState(false);
 
-	const getCountryData = useCallback(async (url) => {
+	console.log('CountryList');
+
+	const getCountryData = async (url) => {
+		setIsLoading(true);
+		// const getCountryData = useCallback(async (url) => {
 		await fetch(url)
 			.then((response) => {
-				console.log('fetching');
-				if (response.status >= 200 && response.status <= 299) {
-					setIsLoading(false);
-					return response.json();
-				}
-				else {
-					setIsLoading(false);
-					setIsServerErr(true);
-					throw new Error(response.statusText);
-				}
+				console.log('fetching all countries');
+				setIsLoading(false);
+				return response.json();
 			})
 			.then((data) => {
 				setFetchedApiData(data);
 				setIsLoading(false);
 			})
 			.catch((error) => {
+				setIsLoading(false)
+				setIsServerErr(true)
+				console.log('Error during fetch: ' + error.message);
 				throw new Error(error.message);
-				// console.log('Error during fetch: ' + error.message);
 			}
 			);
-	}, [url])
+		// }, [url])
+	}
 
 	useEffect(() => {
-		getCountryData(url);
-	}, [url, getCountryData])
+		if (IsShowCountryList) {
+			// window.onload = () => {
+			getCountryData(url);
+			console.log('here');
+			// }
+		}
+		// });
+	}, [IsShowCountryList])
 
-	if (IsLoading) {
+	const ShowBtn = () => {
+		setIsShowCountryList(!IsShowCountryList);
+	}
+
+	if (!IsShowCountryList) {
+		return <div className=' d-flex align-items-center justify-content-center'>
+			<button className="btn btn-primary" onClick={() => ShowBtn()}>
+				Show/Hide Country List
+			</button>
+			<br />
+		</div>
+	}
+	else if (IsLoading) {
 		return (<>
-			Loading List of countries
+			<div className='d-flex align-items-center justify-content-center'>
+				Loading List of all countries...
+			</div>
+			<div className='mt-3 d-flex align-items-center justify-content-center'>
+				<Spinner color="primary" type="grow" />
+				&nbsp;
+				<Spinner color="success" type="grow" />
+				&nbsp;
+				<Spinner color="danger" type="grow" />
+				&nbsp;
+				<Spinner color="warning" type="grow" />
+			</div>
 		</>)
 	}
 	else if (IsServerErr) {
 		return (<>
-			Some error occurred , possibly netword error, try refreshing the page, or check your network
+			<div className='d-flex align-items-center justify-content-center'>
+				⚠️ Some error occurred. while loading List of countries😕<br /><br />
+				Possibly network error😤,<br />
+				Check your network and try refreshing the page
+			</div>
 		</>)
 	}
 	else if (FetchedApiData.length != 0) {
-
 		function compare(a, b) {
 			if (a.name.official > b.name.official)
 				return 1;
@@ -63,8 +97,12 @@ const CountryList = () => {
 		FetchedApiData.sort(compare);
 
 		return (<>
-			{/* <div className="d-md-flex"> */}
-			<div id="countryList" className="overflow-auto" style={{ "maxWidth": "90%", "height": "300px" }}>
+			<div className=' d-flex align-items-center justify-content-center'>
+				<button onClick={() => ShowBtn()} className="btn btn-primary">
+					Show/Hide Country List
+				</button>
+			</div>
+			<div className="mt-5 overflow-auto" style={{ "maxWidth": "90%", "maxHeight": "300px" }}>
 				<ul className="list-group">
 					{
 						FetchedApiData.map((country, index) => {
@@ -73,15 +111,18 @@ const CountryList = () => {
 									className='list-group-item d-flex justify-content-between align-items-start'
 								>
 									{country.flag}&nbsp; &nbsp; &nbsp; {country.name.official}
-									<span><i className="bi bi-search" />
-									</span>
+
+									<button className='btn btn-secondary'
+										onClick={() => setCountryDetail(country)}
+									>
+										<i className="bi bi-search" />
+									</button>
 								</li>
 							)
 						})
 					}
 				</ul>
 			</div>
-			{/* </div> */}
 		</>)
 	}
 
