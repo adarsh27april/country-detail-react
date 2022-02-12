@@ -4,6 +4,13 @@ import { useGlobalcontex } from '../ContextAPI';
 const Flag = () => {
    const { CountryDetail } = useGlobalcontex();
 
+   // let capital;
+   // if (CountryDetail !== undefined) {
+   //    if (CountryDetail.capital !== undefined) {
+   //       capital = CountryDetail.capital[0];
+   //    }
+   // }
+
    return (<>
       {
          (!CountryDetail) ? '' : <>
