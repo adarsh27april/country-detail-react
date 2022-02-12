@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "earth.png",
+      "src": "earth192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "earth.png",
+      "src": "earth512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
