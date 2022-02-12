@@ -12,7 +12,7 @@ const Nav = () => {
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="me-auto navbar-nav mb-2 mb-lg-0">
 						<li className="nav-item">
-							<a target="blank" className="nav-link" href="https://github.com/adarsh27april/CountryDetail">
+							<a target="blank" className="nav-link" href="https://github.com/adarsh27april/country-detail-react">
 								GitHub
 							</a>
 						</li>
