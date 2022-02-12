@@ -36,13 +36,13 @@ const CountryDetailTable = () => {
                   <h3 className="">Facts</h3>
                   <table className="table table-hover table-responsive">
                      <tbody id="tbody">
-                        {(capitals == "") ? <tr></tr> :
+                        {(capitals === "") ? <tr></tr> :
                            <tr>
                               <td>Capital</td>
                               <td>{capitals}</td>
                            </tr>
                         }
-                        {(langsSpoken == "") ? <tr></tr> :
+                        {(langsSpoken === "") ? <tr></tr> :
                            <tr>
                               <td>Languages Spoken</td>
                               <td>{langsSpoken}</td>

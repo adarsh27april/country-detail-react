@@ -13,7 +13,7 @@ const Wttr = () => {
          Weather of capital city &nbsp;&nbsp; {capital}<br />
          <div>
             <br />
-            {(capital == '') ? `No Capital City for : ${CountryDetail.name.official}` :
+            {(capital === '') ? `No Capital City for : ${CountryDetail.name.official}` :
                <img className="img-fluid rounded mt-3"
                   src={`https://wttr.in/${capital}_tpq0_transparency=200.png`}
                   alt={`weather of capital city : ${capital}`}
