@@ -3,7 +3,7 @@ import React from 'react';
 const Nav = () => {
 	return (<>
 		<header className="site-header sticky-top">
-			<nav className="mx-1 my-1 rounded navbar navbar navbar-expand-lg navbar-dark bg-secondary "
+			<nav className="mx-1 my-1 rounded navbar navbar navbar-expand-lg navbar-dark "
 				style={{ backgroundColor: "rgb(16, 17, 58)" }}
 			>
 				<div className="container-fluid">
